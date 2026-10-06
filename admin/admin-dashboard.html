@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Student Report System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Admin Panel
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="admin-dashboard.html">Dashboard</a>
+
+            <a href="add-student.html">Add Student</a>
+
+            <a href="manage-students.html">Students</a>
+
+            <a href="view-reports.html">Reports</a>
+
+            <a href="../index.html" onclick="logout()">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Dashboard -->
+    <main class="dashboard" style="padding: 50px 7%;">
+
+        <h1 style="color: #172554;">
+            Admin Dashboard
+        </h1>
+
+        <p style="margin-top: 10px;">
+            Welcome to the Student Report System Admin Panel.
+        </p>
+
+
+        <!-- Dashboard Cards -->
+        <div
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 25px;
+                margin-top: 35px;
+            "
+        >
+
+            <!-- Students -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>👨‍🎓 Students</h2>
+
+                <p
+                    id="studentCount"
+                    style="
+                        font-size: 32px;
+                        font-weight: bold;
+                        margin-top: 15px;
+                    "
+                >
+                    0
+                </p>
+
+                <p>Total Students</p>
+
+            </div>
+
+
+            <!-- Reports -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>📊 Reports</h2>
+
+                <p style="margin-top: 15px;">
+                    View and manage student reports.
+                </p>
+
+                <a
+                    href="view-reports.html"
+                    class="btn"
+                    style="margin-top: 15px;"
+                >
+                    View Reports
+                </a>
+
+            </div>
+
+
+            <!-- Add Student -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>➕ Add Student</h2>
+
+                <p style="margin-top: 15px;">
+                    Add a new student to the system.
+                </p>
+
+                <a
+                    href="add-student.html"
+                    class="btn"
+                    style="margin-top: 15px;"
+                >
+                    Add Student
+                </a>
+
+            </div>
+
+
+            <!-- Manage Students -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>👥 Manage Students</h2>
+
+                <p style="margin-top: 15px;">
+                    View, edit and delete student details.
+                </p>
+
+                <a
+                    href="manage-students.html"
+                    class="btn"
+                    style="margin-top: 15px;"
+                >
+                    Manage Students
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Get students from LocalStorage
+        const students =
+            JSON.parse(localStorage.getItem("students")) || [];
+
+
+        // Display student count
+        const studentCount =
+            document.getElementById("studentCount");
+
+        studentCount.textContent =
+            students.length;
+
+
+        // Logout function
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

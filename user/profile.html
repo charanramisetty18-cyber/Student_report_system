@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - Student Report System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Student Portal
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="user-dashboard.html">Dashboard</a>
+
+            <a href="my-report.html">My Report</a>
+
+            <a href="profile.html">Profile</a>
+
+            <a href="../index.html" onclick="logout()">Logout</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Profile Section -->
+    <main style="padding: 50px 7%;">
+
+        <h1 style="color: #172554;">
+            Student Profile
+        </h1>
+
+        <p style="margin-top: 10px;">
+            View your account information.
+        </p>
+
+
+        <!-- Profile Card -->
+        <div
+            style="
+                max-width: 600px;
+                margin-top: 30px;
+                background: white;
+                padding: 35px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            "
+        >
+
+            <div
+                style="
+                    text-align: center;
+                    font-size: 70px;
+                    margin-bottom: 20px;
+                "
+            >
+                👨‍🎓
+            </div>
+
+
+            <h2
+                id="profileName"
+                style="
+                    text-align: center;
+                    color: #1e3a8a;
+                    margin-bottom: 25px;
+                "
+            >
+                Student
+            </h2>
+
+
+            <!-- Profile Information -->
+
+            <p style="margin-bottom: 15px;">
+                <strong>Full Name:</strong>
+                <span id="name">-</span>
+            </p>
+
+
+            <p style="margin-bottom: 15px;">
+                <strong>Email:</strong>
+                <span id="email">-</span>
+            </p>
+
+
+            <p style="margin-bottom: 15px;">
+                <strong>Role:</strong>
+                <span id="role">Student</span>
+            </p>
+
+
+            <p style="margin-bottom: 15px;">
+                <strong>Account Status:</strong>
+
+                <span
+                    style="
+                        color: #16a34a;
+                        font-weight: bold;
+                    "
+                >
+                    Active
+                </span>
+
+            </p>
+
+        </div>
+
+
+        <p style="margin-top: 30px;">
+
+            <a href="user-dashboard.html">
+                ← Back to Dashboard
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Get logged-in user
+        const currentUser =
+            JSON.parse(localStorage.getItem("currentUser"));
+
+
+        // Display user information
+        if (currentUser) {
+
+            document.getElementById("profileName").textContent =
+                currentUser.name;
+
+            document.getElementById("name").textContent =
+                currentUser.name;
+
+            document.getElementById("email").textContent =
+                currentUser.email;
+
+            document.getElementById("role").textContent =
+                currentUser.role;
+
+        }
+
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Student - Student Report System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Admin Panel
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="admin-dashboard.html">Dashboard</a>
+
+            <a href="add-student.html">Add Student</a>
+
+            <a href="manage-students.html">Students</a>
+
+            <a href="view-reports.html">Reports</a>
+
+            <a href="../index.html" onclick="logout()">Logout</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Add Student Section -->
+    <main class="hero">
+
+        <div class="hero-content">
+
+            <h1>Add Student</h1>
+
+            <p>
+                Enter the student details below.
+            </p>
+
+
+            <form id="studentForm">
+
+                <!-- Student Name -->
+                <div style="margin-bottom: 15px;">
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter student name"
+                        required
+                        style="
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 12px;
+                            border-radius: 8px;
+                            border: 1px solid #ccc;
+                        "
+                    >
+
+                </div>
+
+
+                <!-- Roll Number -->
+                <div style="margin-bottom: 15px;">
+
+                    <input
+                        type="text"
+                        id="rollNumber"
+                        placeholder="Enter roll number"
+                        required
+                        style="
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 12px;
+                            border-radius: 8px;
+                            border: 1px solid #ccc;
+                        "
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+                <div style="margin-bottom: 15px;">
+
+                    <input
+                        type="email"
+                        id="studentEmail"
+                        placeholder="Enter student email"
+                        required
+                        style="
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 12px;
+                            border-radius: 8px;
+                            border: 1px solid #ccc;
+                        "
+                    >
+
+                </div>
+
+
+                <!-- Course -->
+                <div style="margin-bottom: 15px;">
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="Enter course"
+                        required
+                        style="
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 12px;
+                            border-radius: 8px;
+                            border: 1px solid #ccc;
+                        "
+                    >
+
+                </div>
+
+
+                <!-- Year -->
+                <div style="margin-bottom: 15px;">
+
+                    <select
+                        id="year"
+                        required
+                        style="
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 12px;
+                            border-radius: 8px;
+                            border: 1px solid #ccc;
+                        "
+                    >
+
+                        <option value="">
+                            Select Year
+                        </option>
+
+                        <option value="1st Year">
+                            1st Year
+                        </option>
+
+                        <option value="2nd Year">
+                            2nd Year
+                        </option>
+
+                        <option value="3rd Year">
+                            3rd Year
+                        </option>
+
+                        <option value="4th Year">
+                            4th Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    class="btn"
+                    style="
+                        border: none;
+                        cursor: pointer;
+                    "
+                >
+                    Add Student
+                </button>
+
+            </form>
+
+
+            <p style="margin-top: 25px;">
+
+                <a href="admin-dashboard.html">
+                    ← Back to Dashboard
+                </a>
+
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        const studentForm =
+            document.getElementById("studentForm");
+
+
+        studentForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            // Get existing students
+            const students =
+                JSON.parse(localStorage.getItem("students")) || [];
+
+
+            // Get form values
+            const student = {
+
+                name:
+                    document.getElementById("studentName").value.trim(),
+
+                rollNumber:
+                    document.getElementById("rollNumber").value.trim(),
+
+                email:
+                    document.getElementById("studentEmail").value.trim(),
+
+                course:
+                    document.getElementById("course").value.trim(),
+
+                year:
+                    document.getElementById("year").value
+
+            };
+
+
+            // Check duplicate roll number
+            const existingStudent = students.find(
+                studentItem =>
+                    studentItem.rollNumber === student.rollNumber
+            );
+
+
+            if (existingStudent) {
+
+                alert("This roll number already exists!");
+
+                return;
+
+            }
+
+
+            // Add student
+            students.push(student);
+
+
+            // Save students
+            localStorage.setItem(
+                "students",
+                JSON.stringify(students)
+            );
+
+
+            alert("Student added successfully!");
+
+
+            // Clear form
+            studentForm.reset();
+
+        });
+
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

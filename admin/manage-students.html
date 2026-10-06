@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Students - Student Report System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Admin Panel
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="admin-dashboard.html">Dashboard</a>
+
+            <a href="add-student.html">Add Student</a>
+
+            <a href="manage-students.html">Students</a>
+
+            <a href="view-reports.html">Reports</a>
+
+            <a href="../index.html" onclick="logout()">Logout</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Manage Students -->
+    <main style="padding: 50px 7%;">
+
+        <h1 style="color: #172554;">
+            Manage Students
+        </h1>
+
+        <p style="margin-top: 10px;">
+            View and manage all registered students.
+        </p>
+
+
+        <!-- Student Table -->
+        <div style="
+            margin-top: 30px;
+            overflow-x: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        ">
+
+            <table style="
+                width: 100%;
+                border-collapse: collapse;
+                min-width: 750px;
+            ">
+
+                <thead>
+
+                    <tr style="
+                        background-color: #172554;
+                        color: white;
+                    ">
+
+                        <th style="padding: 14px;">S.No</th>
+
+                        <th style="padding: 14px;">Name</th>
+
+                        <th style="padding: 14px;">Roll Number</th>
+
+                        <th style="padding: 14px;">Email</th>
+
+                        <th style="padding: 14px;">Course</th>
+
+                        <th style="padding: 14px;">Year</th>
+
+                        <th style="padding: 14px;">Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentTableBody">
+
+                    <!-- Students will appear here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- No Students Message -->
+        <p
+            id="noStudents"
+            style="
+                text-align: center;
+                margin-top: 25px;
+                font-weight: bold;
+            "
+        >
+            No students added yet.
+        </p>
+
+
+        <p style="margin-top: 30px;">
+
+            <a href="admin-dashboard.html">
+                ← Back to Dashboard
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Get students from LocalStorage
+        let students =
+            JSON.parse(localStorage.getItem("students")) || [];
+
+
+        const tableBody =
+            document.getElementById("studentTableBody");
+
+        const noStudents =
+            document.getElementById("noStudents");
+
+
+        // Display students
+        function displayStudents() {
+
+            tableBody.innerHTML = "";
+
+
+            if (students.length === 0) {
+
+                noStudents.style.display = "block";
+
+                return;
+
+            }
+
+
+            noStudents.style.display = "none";
+
+
+            students.forEach(function(student, index) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td style="
+                        padding: 12px;
+                        text-align: center;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${index + 1}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.name}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.rollNumber}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.email}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.course}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.year}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                        text-align: center;
+                    ">
+
+                        <button
+                            onclick="deleteStudent(${index})"
+                            style="
+                                background-color: #dc2626;
+                                color: white;
+                                border: none;
+                                padding: 8px 12px;
+                                border-radius: 6px;
+                                cursor: pointer;
+                            "
+                        >
+                            Delete
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                tableBody.appendChild(row);
+
+            });
+
+        }
+
+
+        // Delete student
+        function deleteStudent(index) {
+
+            const confirmDelete =
+                confirm("Are you sure you want to delete this student?");
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            students.splice(index, 1);
+
+
+            localStorage.setItem(
+                "students",
+                JSON.stringify(students)
+            );
+
+
+            displayStudents();
+
+        }
+
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+
+        // Load students when page opens
+        displayStudents();
+
+    </script>
+
+</body>
+
+</html>

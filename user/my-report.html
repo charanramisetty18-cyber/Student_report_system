@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Report - Student Report System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Student Portal
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="user-dashboard.html">Dashboard</a>
+
+            <a href="my-report.html">My Report</a>
+
+            <a href="profile.html">Profile</a>
+
+            <a href="../index.html" onclick="logout()">Logout</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Report Section -->
+    <main style="padding: 50px 7%;">
+
+        <h1 style="color: #172554;">
+            My Academic Report
+        </h1>
+
+        <p
+            id="studentWelcome"
+            style="margin-top: 10px;"
+        >
+            Student Report
+        </p>
+
+
+        <!-- Student Details -->
+        <div
+            style="
+                margin-top: 30px;
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            "
+        >
+
+            <h2>Student Details</h2>
+
+            <p style="margin-top: 15px;">
+                <strong>Name:</strong>
+                <span id="studentName">-</span>
+            </p>
+
+            <p style="margin-top: 10px;">
+                <strong>Email:</strong>
+                <span id="studentEmail">-</span>
+            </p>
+
+        </div>
+
+
+        <!-- Academic Report -->
+        <div
+            style="
+                margin-top: 25px;
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            "
+        >
+
+            <h2>Academic Performance</h2>
+
+
+            <table
+                style="
+                    width: 100%;
+                    margin-top: 20px;
+                    border-collapse: collapse;
+                "
+            >
+
+                <thead>
+
+                    <tr
+                        style="
+                            background-color: #172554;
+                            color: white;
+                        "
+                    >
+
+                        <th style="padding: 14px;">
+                            Subject
+                        </th>
+
+                        <th style="padding: 14px;">
+                            Marks
+                        </th>
+
+                        <th style="padding: 14px;">
+                            Grade
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            Data Structures
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            85
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            A
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            Java
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            78
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            B+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            Database Management
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            88
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            A
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            Operating Systems
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            82
+                        </td>
+
+                        <td style="
+                            padding: 14px;
+                            border-bottom: 1px solid #ddd;
+                        ">
+                            A
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- Summary -->
+        <div
+            style="
+                margin-top: 25px;
+                background: #eff6ff;
+                padding: 25px;
+                border-radius: 12px;
+            "
+        >
+
+            <h2>Report Summary</h2>
+
+            <p style="margin-top: 12px;">
+                Overall Performance:
+                <strong>Good</strong>
+            </p>
+
+            <p style="margin-top: 10px;">
+                Attendance:
+                <strong>90%</strong>
+            </p>
+
+            <p style="margin-top: 10px;">
+                Overall Result:
+                <strong>PASS</strong>
+            </p>
+
+        </div>
+
+
+        <p style="margin-top: 30px;">
+
+            <a href="user-dashboard.html">
+                ← Back to Dashboard
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // Get logged-in user
+        const currentUser =
+            JSON.parse(localStorage.getItem("currentUser"));
+
+
+        if (currentUser) {
+
+            document.getElementById("studentWelcome").textContent =
+                "Academic report for " + currentUser.name;
+
+            document.getElementById("studentName").textContent =
+                currentUser.name;
+
+            document.getElementById("studentEmail").textContent =
+                currentUser.email;
+
+        }
+
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

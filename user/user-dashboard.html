@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - Student Report System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Student Portal
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="user-dashboard.html">Dashboard</a>
+
+            <a href="my-report.html">My Report</a>
+
+            <a href="profile.html">Profile</a>
+
+            <a href="../index.html" onclick="logout()">Logout</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Dashboard -->
+    <main style="padding: 50px 7%;">
+
+        <h1 style="color: #172554;">
+            Student Dashboard
+        </h1>
+
+        <p
+            id="welcomeMessage"
+            style="margin-top: 10px;"
+        >
+            Welcome, Student!
+        </p>
+
+
+        <!-- Dashboard Cards -->
+        <div
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 25px;
+                margin-top: 35px;
+            "
+        >
+
+            <!-- My Report -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>📊 My Report</h2>
+
+                <p style="margin-top: 15px;">
+                    View your academic report and performance.
+                </p>
+
+                <a
+                    href="my-report.html"
+                    class="btn"
+                    style="margin-top: 15px;"
+                >
+                    View Report
+                </a>
+
+            </div>
+
+
+            <!-- Profile -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>👤 Profile</h2>
+
+                <p style="margin-top: 15px;">
+                    View your personal information.
+                </p>
+
+                <a
+                    href="profile.html"
+                    class="btn"
+                    style="margin-top: 15px;"
+                >
+                    View Profile
+                </a>
+
+            </div>
+
+
+            <!-- Performance -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>📚 Performance</h2>
+
+                <p style="margin-top: 15px;">
+                    Check your academic performance.
+                </p>
+
+            </div>
+
+
+            <!-- Attendance -->
+            <div
+                style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                "
+            >
+
+                <h2>📅 Attendance</h2>
+
+                <p style="margin-top: 15px;">
+                    Check your attendance details.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Get logged-in user
+        const currentUser =
+            JSON.parse(localStorage.getItem("currentUser"));
+
+
+        // Display welcome message
+        const welcomeMessage =
+            document.getElementById("welcomeMessage");
+
+
+        if (currentUser) {
+
+            welcomeMessage.textContent =
+                "Welcome, " + currentUser.name + "!";
+
+        }
+
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

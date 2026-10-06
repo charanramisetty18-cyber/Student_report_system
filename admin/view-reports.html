@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Reports - Student Report System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 Admin Panel
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="admin-dashboard.html">Dashboard</a>
+
+            <a href="add-student.html">Add Student</a>
+
+            <a href="manage-students.html">Students</a>
+
+            <a href="view-reports.html">Reports</a>
+
+            <a href="../index.html" onclick="logout()">Logout</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Reports Section -->
+    <main style="padding: 50px 7%;">
+
+        <h1 style="color: #172554;">
+            Student Reports
+        </h1>
+
+        <p style="margin-top: 10px;">
+            View student academic report information.
+        </p>
+
+
+        <!-- Report Table -->
+        <div style="
+            margin-top: 30px;
+            overflow-x: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        ">
+
+            <table style="
+                width: 100%;
+                border-collapse: collapse;
+                min-width: 750px;
+            ">
+
+                <thead>
+
+                    <tr style="
+                        background-color: #172554;
+                        color: white;
+                    ">
+
+                        <th style="padding: 14px;">S.No</th>
+
+                        <th style="padding: 14px;">Name</th>
+
+                        <th style="padding: 14px;">Roll Number</th>
+
+                        <th style="padding: 14px;">Course</th>
+
+                        <th style="padding: 14px;">Year</th>
+
+                        <th style="padding: 14px;">Status</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="reportTableBody">
+
+                    <!-- Reports appear here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p
+            id="noReports"
+            style="
+                text-align: center;
+                margin-top: 25px;
+                font-weight: bold;
+            "
+        >
+            No student reports available.
+        </p>
+
+
+        <p style="margin-top: 30px;">
+
+            <a href="admin-dashboard.html">
+                ← Back to Dashboard
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Report System
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // Get students from LocalStorage
+        const students =
+            JSON.parse(localStorage.getItem("students")) || [];
+
+
+        const reportTableBody =
+            document.getElementById("reportTableBody");
+
+        const noReports =
+            document.getElementById("noReports");
+
+
+        // Display reports
+        function displayReports() {
+
+            reportTableBody.innerHTML = "";
+
+
+            if (students.length === 0) {
+
+                noReports.style.display = "block";
+
+                return;
+
+            }
+
+
+            noReports.style.display = "none";
+
+
+            students.forEach(function(student, index) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td style="
+                        padding: 12px;
+                        text-align: center;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${index + 1}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.name}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.rollNumber}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.course}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                    ">
+                        ${student.year}
+                    </td>
+
+                    <td style="
+                        padding: 12px;
+                        border-bottom: 1px solid #ddd;
+                        color: #16a34a;
+                        font-weight: bold;
+                    ">
+                        Available
+                    </td>
+
+                `;
+
+
+                reportTableBody.appendChild(row);
+
+            });
+
+        }
+
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("currentUser");
+
+        }
+
+
+        // Load reports
+        displayReports();
+
+    </script>
+
+</body>
+
+</html>
